@@ -1014,6 +1014,7 @@ def two_sample(
 
     gene_names = parse_gene_names(data, gene_names)
     grouping = parse_grouping(data, sample_description, grouping)
+    batch = parse_grouping(data, sample_description, 'batch')
     sample_description = pd.DataFrame({"grouping": grouping})
 
     groups = np.unique(grouping)
@@ -1025,7 +1026,7 @@ def two_sample(
     if test.lower() == 'wald':
         if noise_model is None:
             raise ValueError("Please specify noise_model")
-        formula_loc = '~ 1 + batch + grouping' # formula_loc = '~ 1 + grouping'
+        formula_loc = kwargs['formula_loc'] # formula_loc = '~ 1 + grouping'
         formula_scale = '~ 1'
         de_test = wald(
             data=data,
