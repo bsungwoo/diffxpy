@@ -1025,7 +1025,7 @@ def two_sample(
     if test.lower() == 'wald':
         if noise_model is None:
             raise ValueError("Please specify noise_model")
-        formula_loc = '~ 1 + grouping'
+        # formula_loc = '~ 1 + grouping'
         formula_scale = '~ 1'
         de_test = wald(
             data=data,
